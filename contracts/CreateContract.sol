@@ -18,6 +18,7 @@ contract Contract{
     uint public artist_id;
 
     string public contract_type;
+    string public status;
 
     address public owner; 
 
@@ -30,6 +31,7 @@ contract Contract{
                 uint _label_id,
                 uint _artist_id,
                 string memory _contract_type,
+                string memory _status,
                 address _owner) public{
 
         percent_label = _percent_label;
@@ -43,6 +45,7 @@ contract Contract{
         artist_id = _artist_id;
 
         contract_type = _contract_type;
+        status = _status;
 
         owner = _owner;
     }
@@ -60,7 +63,8 @@ contract CreateContract{ // contract factory
                             uint _client_id,
                             uint _label_id,
                             uint _artist_id,
-                            string memory _contract_type) public {
+                            string memory _contract_type,
+                            string memory _status) public {
 
         Contract contracts = new Contract(  _percent_label, 
                                             _percent_artist,
@@ -71,30 +75,10 @@ contract CreateContract{ // contract factory
                                             _label_id,
                                             _artist_id,
                                             _contract_type,
+                                            _status,
                                             address(this));
         arr_contracts.push(contracts);
     }
-
-    // struct
-    /* 
-
-    contract CreateContract{ // factory
-
-    mapping(uint => MusicContract) public mcontracts;
-
-    struct MusicContract { 
-        string testname;
-        string testname2;
-        address owner; 
-    }
-
-    function createContract(uint _id, string memory _testname, string memory _testname2) public {
-        mcontracts[_id] = MusicContract(_testname, _testname2, address(this));
-    }
-
-}
-
-    */
 
     //function sendContract(){}
 
